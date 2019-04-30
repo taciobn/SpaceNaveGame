@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PNG/playerShip3_blue.png" type="Texture" id=1]
+[ext_resource path="res://PNG/Parts/gun05.png" type="Texture" id=2]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = PoolVector2Array( 0, -10, 8.66025, 5, -8.66025, 5 )
+
+[node name="State" type="Area2D" groups=[
+"STATE",
+]]
+
+editor/display_folded = true
+rotation = 1.5708
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+offset = Vector2( 0.304878, -20.2201 )
+_sections_unfolded = [ "Animation", "Region", "Transform" ]
+
+[node name="gun01" type="Sprite" parent="." index="1"]
+
+position = Vector2( -28, -31 )
+rotation = -3.14159
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="gun02" type="Sprite" parent="." index="2"]
+
+position = Vector2( 29.3268, -31 )
+rotation = -2.53518e-06
+scale = Vector2( 1, -1 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
+
+[node name="GunPosition" type="Node2D" parent="." index="3"]
+
+[node name="Position1" type="Position2D" parent="GunPosition" index="0"]
+
+position = Vector2( 0, -57.7978 )
+
+[node name="Position2" type="Position2D" parent="GunPosition" index="1"]
+
+position = Vector2( 25.5911, -51.4818 )
+
+[node name="Position3" type="Position2D" parent="GunPosition" index="2"]
+
+position = Vector2( -25.4066, -51.4818 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." index="4"]
+
+position = Vector2( 0, -13.1067 )
+scale = Vector2( 6, 4 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+
