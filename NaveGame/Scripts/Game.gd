@@ -25,9 +25,15 @@ func _process(delta):
 		muve_in_grid(Vector2(0,1))
 	pass
 
+func clean_shot():
+	for child in get_children():
+		if child.is_in_group("SHOT"):
+			child.queue_free()
+	pass
+	
 func clean_screan():
 	for child in get_children():
-		if child.is_in_group("SCREAN"):
+		if child.is_in_group("XP"):
 			child.queue_free()
 	
 	pass
@@ -49,6 +55,7 @@ func muve_in_grid(vector):
 		if vector.y < 0:
 			$Player.global_position.y = 600
 		clean_screan()
+		clean_shot()
 		genarate_screan(positionNave.x,positionNave.y)
 	else :
 		if vector.x > 0:

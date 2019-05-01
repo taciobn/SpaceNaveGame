@@ -12,7 +12,6 @@ points = PoolVector2Array( 0, -10, 8.66025, 5, -8.66025, 5 )
 "STATE",
 ]]
 
-editor/display_folded = true
 rotation = 1.5708
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

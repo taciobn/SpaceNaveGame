@@ -9,8 +9,8 @@ custom_solver_bias = 0.0
 extents = Vector2( 8.29808, 8.32648 )
 
 [node name="Xp" type="Area2D" groups=[
-"XP",
 "SCREAN",
+"XP",
 ]]
 
 input_pickable = true
