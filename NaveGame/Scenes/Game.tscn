@@ -28,7 +28,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaScrean" index="0"]
 
-position = Vector2( 21.0749, -2.70322 )
+position = Vector2( 0.569397, 7.54953 )
 scale = Vector2( 2.30391, 2.20283 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
