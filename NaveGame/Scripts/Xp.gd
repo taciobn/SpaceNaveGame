@@ -23,4 +23,7 @@ func _on_Xp_area_entered(area):
 		Globals.matrix[index.x][index.y].remove(index.z)
 		print(Globals.matrix[index.x][index.y])
 		queue_free()
+		get_parent().clean_screan()
+		get_parent().genarate_screan(get_parent().positionNave.x,get_parent().positionNave.y)
+		
 	pass 
