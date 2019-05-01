@@ -1,24 +1,16 @@
 extends Node
 
 var cursor = load("res://Sprites/ddddd.png")
-var matrix = []
+var matrix = Globals.matrix
 var width = 100
 var intMax = 30
 var positionNave  = Vector2(int(width/2),int(width/2))
 var pre_xp = preload("res://Scenes/Xp.tscn")
 
 
-
 func _ready():
 	Input.set_custom_mouse_cursor(cursor,0,Vector2(16,16))
-	
-	for x in range(width):
-    	matrix.append([])
-	    for y in range(width):
-        	matrix[x].append(randi()%intMax)
-	genarate_screan(matrix[positionNave.x][positionNave.y])
-	print("position Nave :"+str(positionNave))
-	print("position Value :" + str(matrix[positionNave.x][positionNave.y]))
+	genarate_screan(positionNave.x,positionNave.y)
 
 	pass
 
@@ -57,7 +49,7 @@ func muve_in_grid(vector):
 		if vector.y < 0:
 			$Player.global_position.y = 600
 		clean_screan()
-		genarate_screan(matrix[positionNave.x][positionNave.y])
+		genarate_screan(positionNave.x,positionNave.y)
 	else :
 		if vector.x > 0:
 			$Player.global_position.x = 1024
@@ -69,9 +61,11 @@ func muve_in_grid(vector):
 			$Player.global_position.y = 0
 	print(positionNave)
 	pass
-func genarate_screan(num):
-	for i in range(num) :
+func genarate_screan(x,y):
+	var quantidateDeXp = matrix[x][y].size()
+	for z in range(quantidateDeXp):
 		var xp = pre_xp.instance()
-		xp.position = Vector2(randi()%1020,randi()%590)
+		xp.position = Vector2( matrix[x][y][z][0], matrix[x][y][z][1])
+		xp.index = Vector3(x,y,z)
 		add_child(xp)
 	pass
