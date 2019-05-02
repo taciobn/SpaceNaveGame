@@ -2,10 +2,11 @@ extends Node
 
 var cursor = load("res://Sprites/ddddd.png")
 var matrix = Globals.matrix
-var width = 100
+var width = Globals.width
 var intMax = 30
 var positionNave  = Vector2(int(width/2),int(width/2))
 var pre_xp = preload("res://Scenes/Xp.tscn")
+onready var lifeBarMaxSize = get_node("Control/LifeConteiner/LifeBar").rect_size
 
 
 func _ready():
@@ -15,14 +16,18 @@ func _ready():
 	pass
 
 func _process(delta):
-	if $Player.global_position.x <0 :
-		muve_in_grid(Vector2(-1,0))
-	if $Player.global_position.y <0:
-		muve_in_grid(Vector2(0,-1))
-	if $Player.global_position.x >1024 :
-		muve_in_grid(Vector2(1,0))
-	if $Player.global_position.y >600 :
-		muve_in_grid(Vector2(0,1))
+	
+	if has_node("Player"):
+		if $Player.global_position.x <0 :
+			muve_in_grid(Vector2(-1,0))
+		if $Player.global_position.y <0:
+			muve_in_grid(Vector2(0,-1))
+		if $Player.global_position.x >1024 :
+			muve_in_grid(Vector2(1,0))
+		if $Player.global_position.y >600 :
+			muve_in_grid(Vector2(0,1))
+		life_bar_att()
+	
 	pass
 
 func clean_shot():
@@ -75,4 +80,10 @@ func genarate_screan(x,y):
 		xp.position = Vector2( matrix[x][y][z][0], matrix[x][y][z][1])
 		xp.index = Vector3(x,y,z)
 		add_child(xp)
+	pass
+func life_bar_att():
+	var lifeBar =  get_node("Control/LifeConteiner/LifeBar")
+	
+	lifeBar.rect_size.x = (lifeBarMaxSize.x/100)*((Globals.playerLifeMax/100)*Globals.playerLife)
+	
 	pass

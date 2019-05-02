@@ -21,7 +21,6 @@ func _on_Xp_area_entered(area):
 	if area.is_in_group("STATE"):
 		area.get_parent().get_parent().xp +=xpPonints
 		Globals.matrix[index.x][index.y].remove(index.z)
-		print(Globals.matrix[index.x][index.y])
 		queue_free()
 		get_parent().clean_screan()
 		get_parent().genarate_screan(get_parent().positionNave.x,get_parent().positionNave.y)

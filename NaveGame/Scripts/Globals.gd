@@ -3,6 +3,9 @@ extends Node
 var matrix = []
 var width = 100
 var intMax = 30
+var playerLife = 0
+var playerLifeMax = 0
+
 
 func _ready():
 	for x in range(width):

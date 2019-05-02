@@ -7,6 +7,7 @@ var xp = 0
 var xpNv = 10
 var stateNumero = 0
 var state = "res://Scenes/States/State"+str(stateNumero)+".tscn"
+var lifeMax = 50
 
 func _ready():
 	var forma = load(state)
@@ -24,6 +25,7 @@ func _process(delta):
 	time -= delta
 	
 	upar()
+	
 	pass
 	
 	
@@ -49,14 +51,7 @@ func move(delta):
 			vel.x -= 10
 	elif vel.x <=0:
 		vel.x += 1
-#	if dir.x <=1&&dir.x >0:
-#		dir.x -=0.01
-#	if dir.y <=1&&dir.y >0:
-#		dir.y -=0.01
-#	if dir.x >=-1&&dir.x <0:
-#		dir.x +=0.01
-#	if dir.y >=-1&&dir.y <0:
-#		dir.y +=0.01
+		
 	global_position.x = global_position.x + vel.x*delta
 	global_position.y = global_position.y + vel.y*delta
 	
@@ -79,11 +74,11 @@ func upar():
 func direction():
 	rotation = get_global_mouse_position().angle_to_point(position)
 	pass
+	
 func shot(pos):
 	var shot = pre_shot.instance()
 	shot.global_position = pos
 	shot.rotation = rotation+ deg2rad(90)
 	shot.dir = (global_position-get_global_mouse_position()).normalized()*-1
-	get_parent().add_child(shot)
+	get_parent().get_node("Shots").add_child(shot)
 	pass
-

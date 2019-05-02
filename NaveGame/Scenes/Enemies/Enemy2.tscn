@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Enemy2.gd" type="Script" id=1]
+[ext_resource path="res://PNG/ufoRed.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 46.0
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "rolling"
+length = 3.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ufoRed:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 1.5, 2.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 360.0 ]
+}
+
+[node name="State" type="Area2D" groups=[
+"ENIMY",
+]]
+
+rotation = 1.5708
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ufoRed" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
+
+[node name="GunPosition" type="Node2D" parent="." index="1"]
+
+[node name="Position" type="Position2D" parent="GunPosition" index="0"]
+
+position = Vector2( -47, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position2" type="Position2D" parent="GunPosition" index="1"]
+
+position = Vector2( -29, 37 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position3" type="Position2D" parent="GunPosition" index="2"]
+
+position = Vector2( 0, 46 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position4" type="Position2D" parent="GunPosition" index="3"]
+
+position = Vector2( 29, 35 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position5" type="Position2D" parent="GunPosition" index="4"]
+
+position = Vector2( 46, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position6" type="Position2D" parent="GunPosition" index="5"]
+
+position = Vector2( 29, -37 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position7" type="Position2D" parent="GunPosition" index="6"]
+
+position = Vector2( 0, -48 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position8" type="Position2D" parent="GunPosition" index="7"]
+
+position = Vector2( -29, -38 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+position = Vector2( -0.263521, -0.527038 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+
+root_node = NodePath("..")
+autoplay = "rolling"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/rolling = SubResource( 2 )
+blend_times = [  ]
+
+[connection signal="area_entered" from="." to="." method="_on_State_area_entered"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+

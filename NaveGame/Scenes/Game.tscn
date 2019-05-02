@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Enemies/Enemy2.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -28,10 +29,69 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaScrean" index="0"]
 
+visible = false
 position = Vector2( 0.569397, 7.54953 )
 scale = Vector2( 2.30391, 2.20283 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="State" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 785.081, 182.361 )
+
+[node name="Shots" type="Node2D" parent="." index="3"]
+
+[node name="Control" type="Control" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="LifeConteiner" type="ColorRect" parent="Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 47.0
+margin_top = 38.0
+margin_right = 353.0
+margin_bottom = 73.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.710938, 0.710938, 0.710938, 1 )
+
+[node name="LifeBar" type="ColorRect" parent="Control/LifeConteiner" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 301.0
+margin_bottom = 29.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.0811615, 0.769531, 0.124185, 1 )
+_sections_unfolded = [ "Rect" ]
 
 [connection signal="area_exited" from="AreaScrean" to="." method="_on_AreaScrean_area_exited"]
 
