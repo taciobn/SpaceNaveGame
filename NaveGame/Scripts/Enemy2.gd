@@ -48,6 +48,7 @@ func _on_Enimy_area_entered(area):
 	if area.is_in_group("SHOTPLAYER"):
 		area.queue_free()
 		life -= area.damage
+		get_node("AnimationPlayer").play("damage")
 		pass
 	pass 
 	
