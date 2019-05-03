@@ -16,8 +16,9 @@ func _ready():
 	pass
 
 func _process(delta):
+	life_bar_att()
 	if has_node("Player"):
-		life_bar_att()
+		
 		if $Player.global_position.x <0 :
 			muve_in_grid(Vector2(-1,0))
 		if $Player.global_position.y <0:
@@ -68,6 +69,7 @@ func muve_in_grid(vector):
 			$Player.global_position.y = 0
 	
 	pass
+	
 func genarate_screan(x,y):
 	var quantidateDeXp = matrix[x][y].size()
 	for z in range(quantidateDeXp):
@@ -76,6 +78,8 @@ func genarate_screan(x,y):
 		xp.index = Vector3(x,y,z)
 		get_node("Xps").add_child(xp)
 	pass
+	
+	
 func life_bar_att():
 	var lifeBar =  get_node("Control/LifeConteiner/LifeBar")
 	lifeBar.rect_size.x = ((Globals.playerLife*100)/Globals.playerLifeMax)*lifeBarMaxSize.x/100
