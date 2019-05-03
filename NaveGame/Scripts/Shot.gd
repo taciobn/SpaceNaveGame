@@ -3,7 +3,6 @@ extends Area2D
 var vel = 500
 var dir = Vector2()
 var damage = 25
-var life
 func _ready():
 
 	pass

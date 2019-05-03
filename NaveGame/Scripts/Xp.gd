@@ -5,6 +5,9 @@ extends Area2D
 # var b = "textvar"
 var xpPonints = 1
 var index = Vector3()
+onready var game = get_parent().get_parent()
+
+
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -22,7 +25,7 @@ func _on_Xp_area_entered(area):
 		area.get_parent().get_parent().xp +=xpPonints
 		Globals.matrix[index.x][index.y].remove(index.z)
 		queue_free()
-		get_parent().clean_screan()
-		get_parent().genarate_screan(get_parent().positionNave.x,get_parent().positionNave.y)
+		game.clean_screan()
+		game.genarate_screan(game.positionNave.x,game.positionNave.y)
 		
 	pass 

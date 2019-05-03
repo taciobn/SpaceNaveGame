@@ -16,8 +16,8 @@ func _ready():
 	pass
 
 func _process(delta):
-	
 	if has_node("Player"):
+		life_bar_att()
 		if $Player.global_position.x <0 :
 			muve_in_grid(Vector2(-1,0))
 		if $Player.global_position.y <0:
@@ -26,21 +26,16 @@ func _process(delta):
 			muve_in_grid(Vector2(1,0))
 		if $Player.global_position.y >600 :
 			muve_in_grid(Vector2(0,1))
-		life_bar_att()
-	
 	pass
 
 func clean_shot():
-	for child in get_children():
-		if child.is_in_group("SHOT"):
-			child.queue_free()
+	for child in get_node("Shots").get_children():
+		child.queue_free()
 	pass
 	
 func clean_screan():
-	for child in get_children():
-		if child.is_in_group("XP"):
+	for child in get_node("Xps").get_children():
 			child.queue_free()
-	
 	pass
 
 func _on_AreaScrean_area_exited(area):
@@ -79,11 +74,10 @@ func genarate_screan(x,y):
 		var xp = pre_xp.instance()
 		xp.position = Vector2( matrix[x][y][z][0], matrix[x][y][z][1])
 		xp.index = Vector3(x,y,z)
-		add_child(xp)
+		get_node("Xps").add_child(xp)
 	pass
 func life_bar_att():
 	var lifeBar =  get_node("Control/LifeConteiner/LifeBar")
-	
-	lifeBar.rect_size.x = (lifeBarMaxSize.x/100)*((Globals.playerLifeMax/100)*Globals.playerLife)
-	
+	lifeBar.rect_size.x = ((Globals.playerLife*100)/Globals.playerLifeMax)*lifeBarMaxSize.x/100
+
 	pass

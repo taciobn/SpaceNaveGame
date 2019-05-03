@@ -1,19 +1,19 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Enemies/Enemy2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Enemies/Enemy2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 226.004, 143.189 )
 
-[node name="Game" type="Node" index="0"]
+[node name="Game" type="Node"]
 
 script = ExtResource( 1 )
 
-[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Xps" type="Node2D" parent="." index="0"]
 
 [node name="AreaScrean" type="Area2D" parent="." index="1"]
 
@@ -35,13 +35,15 @@ scale = Vector2( 2.30391, 2.20283 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="State" parent="." index="2" instance=ExtResource( 3 )]
+[node name="Enimy" parent="." index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 785.081, 182.361 )
 
-[node name="Shots" type="Node2D" parent="." index="3"]
+[node name="Player" parent="." index="3" instance=ExtResource( 3 )]
 
-[node name="Control" type="Control" parent="." index="4"]
+[node name="Shots" type="Node2D" parent="." index="4"]
+
+[node name="Control" type="Control" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0

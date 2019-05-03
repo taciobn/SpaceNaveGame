@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Enemy2.gd" type="Script" id=1]
 [ext_resource path="res://PNG/ufoRed.png" type="Texture" id=2]
@@ -10,7 +10,25 @@ radius = 46.0
 
 [sub_resource type="Animation" id=2]
 
-resource_name = "rolling"
+resource_name = "damage"
+length = 0.6
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ufoRed:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+
 length = 3.0
 loop = true
 step = 0.1
@@ -27,7 +45,7 @@ tracks/0/keys = {
 "values": [ 0.0, 180.0, 360.0 ]
 }
 
-[node name="State" type="Area2D" groups=[
+[node name="Enimy" type="Area2D" index="0" groups=[
 "ENIMY",
 ]]
 
@@ -45,7 +63,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="ufoRed" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Animation", "Offset", "Transform" ]
+_sections_unfolded = [ "Animation", "Material", "Offset", "Transform", "Visibility" ]
 
 [node name="GunPosition" type="Node2D" parent="." index="1"]
 
@@ -91,6 +109,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
+visible = false
 position = Vector2( -0.263521, -0.527038 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
@@ -109,10 +128,11 @@ autoplay = "rolling"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/rolling = SubResource( 2 )
+anims/damage = SubResource( 2 )
+anims/rolling = SubResource( 3 )
 blend_times = [  ]
 
-[connection signal="area_entered" from="." to="." method="_on_State_area_entered"]
+[connection signal="area_entered" from="." to="." method="_on_Enimy_area_entered"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
