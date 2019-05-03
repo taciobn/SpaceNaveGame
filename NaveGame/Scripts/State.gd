@@ -6,7 +6,6 @@ func _ready():
 	life += get_parent().get_parent().lifeMax + get_parent().get_parent().lifeMax/2
 	get_parent().get_parent().lifeMax = life
 	Globals.playerLifeMax = life
-	print(Globals.playerLifeMax)
 	pass
 
 func _process(delta):

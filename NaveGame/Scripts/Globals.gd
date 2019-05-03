@@ -1,7 +1,7 @@
 extends Node
 
 var matrix = []
-var width = 100
+var width = 10
 var intMax = 30
 var playerLife = 0
 var playerLifeMax = 0
@@ -14,8 +14,8 @@ func _ready():
 				matrix[x].append([])
 				for z in range(randi()%intMax) :
 					matrix[x][y].append([])
-					matrix[x][y][z].append(randi()%1020)
-					matrix[x][y][z].append(randi()%590)
+					matrix[x][y][z].append(randi()%1000 + 20)
+					matrix[x][y][z].append(randi()%560 + 20)
 	pass
 
 #func _process(delta):

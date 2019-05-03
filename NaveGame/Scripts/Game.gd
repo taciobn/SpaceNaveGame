@@ -66,7 +66,7 @@ func muve_in_grid(vector):
 			$Player.global_position.y = 600
 		if vector.y < 0:
 			$Player.global_position.y = 0
-	print(positionNave)
+	
 	pass
 func genarate_screan(x,y):
 	var quantidateDeXp = matrix[x][y].size()
